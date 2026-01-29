@@ -1,0 +1,181 @@
+/* JuryLink – Consent Banner (GA4) */
+
+#jl-consent{
+  position: fixed;
+  inset: auto 16px 16px 16px;
+  z-index: 9999;
+  display: none;
+}
+
+#jl-consent[aria-hidden="false"]{ display: block; }
+
+.jl-consent-card{
+  max-width: 980px;
+  margin: 0 auto;
+  border: 1px solid var(--line, #222b36);
+  background: rgba(17,21,27,0.92);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 18px 60px rgba(0,0,0,.35);
+  padding: 14px;
+}
+
+.jl-consent-row{
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.jl-consent-text{
+  min-width: 260px;
+  flex: 1 1 520px;
+}
+
+.jl-consent-title{
+  margin: 0 0 6px 0;
+  font-weight: 800;
+  letter-spacing: .2px;
+  color: var(--text, #e7edf5);
+}
+
+.jl-consent-desc{
+  margin: 0;
+  color: var(--muted, #a8b3c2);
+  font-size: 14px;
+  line-height: 1.45;
+  max-width: 78ch;
+}
+
+.jl-consent-actions{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.jl-consent-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line, #222b36);
+  background: transparent;
+  color: var(--text, #e7edf5);
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform .12s ease, background .12s ease, border-color .12s ease, filter .12s ease;
+}
+
+.jl-consent-btn:hover{
+  background: rgba(255,255,255,.04);
+}
+
+.jl-consent-btn-primary{
+  background: var(--accent, #ff7a18);
+  color: #0b0d10;
+  border-color: transparent;
+}
+
+.jl-consent-btn-primary:hover{
+  filter: brightness(.96);
+}
+
+.jl-consent-btn-quiet{
+  color: var(--muted, #a8b3c2);
+}
+
+.jl-consent-btn-quiet:hover{
+  color: var(--text, #e7edf5);
+}
+
+/* Mobile: przyciski wygodne i czytelne */
+@media (max-width: 520px){
+  .jl-consent-actions{
+    width: 100%;
+    justify-content: stretch;
+  }
+  .jl-consent-btn{
+    flex: 1 1 0;
+  }
+}
+
+/* Desktop: większy margines od krawędzi */
+@media (min-width: 860px){
+  #jl-consent{ inset: auto 22px 22px 22px; }
+}
+
+/* =========================
+   MINI PRZYCISK – IKONKA
+   ========================= */
+
+.jl-consent-mini{
+  position: fixed;
+  left: 12px;
+  bottom: 12px;
+  z-index: 9998;
+  display: none; /* pokaże JS po decyzji */
+}
+
+/* jeśli wolisz prawy dolny róg – odkomentuj:
+.jl-consent-mini{ right:12px; left:auto; }
+*/
+
+@supports (bottom: env(safe-area-inset-bottom)){
+  .jl-consent-mini{
+    left: max(12px, env(safe-area-inset-left));
+    bottom: max(12px, env(safe-area-inset-bottom));
+  }
+}
+
+.jl-consent-mini button{
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(17,21,27,.70);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform .12s ease, border-color .12s ease, background .12s ease;
+  font-size: 0;     /* ukrywa tekst w środku przycisku */
+  color: transparent;
+}
+
+.jl-consent-mini button::before{
+  content: "🍪";
+  font-size: 18px;
+  line-height: 38px;
+  color: var(--text, #e7edf5);
+  display: block;
+  text-align: center;
+  opacity: .9;
+}
+
+.jl-consent-mini button:hover{
+  border-color: rgba(255,122,24,.35);
+  transform: translateY(-1px);
+}
+
+.jl-consent-mini button:focus-visible{
+  outline: 2px solid var(--accent, #ff7a18);
+  outline-offset: 2px;
+}
+
+@media (max-width: 420px){
+  .jl-consent-mini button{
+    width: 34px;
+    height: 34px;
+  }
+  .jl-consent-mini button::before{
+    font-size: 16px;
+    line-height: 34px;
+  }
+}

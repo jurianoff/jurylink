@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://jurylink.pl/sitemap.xml
